@@ -1,8 +1,8 @@
 import React from "react";
 
-export default function PopupWhithForm({ name, title, children, isOpen, onClose}) {
-  
-  const className = `popup popup_type_${name} ${isOpen ? 'popup_opened': ''}`;
+export default function PopupWhithForm({ name, title, children, isOpen, onClose, buttonText }) {
+
+  const className = `popup popup_type_${name} ${isOpen ? 'popup_opened' : ''}`;
 
   return (
     <div className={className}>
@@ -16,7 +16,7 @@ export default function PopupWhithForm({ name, title, children, isOpen, onClose}
           {children}
           <button className="popup__button-save button"
             type="submit">
-            Сохранить
+            {buttonText}
           </button>
         </form>
         <button className="popup__button-close button"
