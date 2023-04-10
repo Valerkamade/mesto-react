@@ -1,6 +1,6 @@
 import React from "react";
 import { api } from '../utils/api'
-import Cards from "./Cards";
+import Card from "./Card";
 
 export default function Main({
   onEditProfile,
@@ -56,7 +56,7 @@ export default function Main({
       <section className="gallery page__gallery" aria-label="Галерея">
         <ul className="gallery__list">
           {cards.map((card, i) => (
-            <Cards card={card} onCardClick={onCardClick} key={i} />
+            <Card card={card} onCardClick={onCardClick} key={i} />
           ))}
         </ul>
       </section>
