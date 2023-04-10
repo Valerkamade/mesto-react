@@ -39,10 +39,11 @@ export default function Main({
           <p className="profile__job">{userDescription}</p>
         </div>
         <button className="profile__button-avatar"
-          onClick={onEditAvatar}
-        >
-          <div className="profile__avatar"
-            style={{ backgroundImage: `url(${userAvatar})` }}
+          onClick={onEditAvatar}>
+          <img className="profile__avatar"
+            src={userAvatar}
+            alt={userName}
+          // style={{ backgroundImage: `url(${userAvatar})` }} 
           />
         </button>
         <button className="profile__button-add button"

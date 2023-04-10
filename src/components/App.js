@@ -10,6 +10,7 @@ function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
+  const [isConfirmationPopupOpen, setIsConfirmationPopupOpen] = React.useState(false);
   const [selectedCard, setSelectedCard] = React.useState({ isOpen: false });
 
   function handleEditAvatarClick() {
@@ -29,6 +30,7 @@ function App() {
     setIsEditAvatarPopupOpen(false);
     setIsAddPlacePopupOpen(false);
     setSelectedCard({ ...selectedCard, isOpen: false });
+    setIsConfirmationPopupOpen(false);
   }
 
   function handleCardClick(card) {
@@ -50,6 +52,7 @@ function App() {
       <PopupWhithForm
         name="profile"
         title="Редактировать профиль"
+        buttonText="Сохранить"
         isOpen={isEditProfilePopupOpen}
         onClose={closeAllPopups}>
         <label className="popup__label">
@@ -77,7 +80,12 @@ function App() {
         </label>
       </PopupWhithForm>
 
-      <PopupWhithForm name="place" title="Новое место" isOpen={isAddPlacePopupOpen} onClose={closeAllPopups}>
+      <PopupWhithForm
+        name="place"
+        title="Новое место"
+        buttonText="Создать"
+        isOpen={isAddPlacePopupOpen}
+        onClose={closeAllPopups}>
         <label className="popup__label">
           <input className="popup__input popup__input_type_title"
             type="text"
@@ -101,7 +109,12 @@ function App() {
         </label>
       </PopupWhithForm>
 
-      <PopupWhithForm name="avatar" title="Обновить аватар" isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups}>
+      <PopupWhithForm
+        name="avatar"
+        title="Обновить аватар"
+        buttonText="Сохранить"
+        isOpen={isEditAvatarPopupOpen}
+        onClose={closeAllPopups}>
         <label className="popup__label">
           <input className="popup__input popup__input_type_avatar"
             type="url"
@@ -113,23 +126,15 @@ function App() {
         </label>
       </PopupWhithForm>
 
-      <ImagePopup card={selectedCard} onClose={closeAllPopups}>
+      <ImagePopup
+        card={selectedCard}
+        onClose={closeAllPopups} />
 
-      </ImagePopup>
-
-      <div className="popup popup_type_delete">
-        <div className="popup__container">
-          <h2 className="popup__heading popup__heading_type_delete">Вы уверены?</h2>
-          <button className="popup__button-save button"
-            type="submit">
-            Да
-          </button>
-          <button className="popup__button-close button"
-            type="button"
-            aria-label="Закрыть">
-          </button>
-        </div>
-      </div>
+      <PopupWhithForm
+        title="Вы уверены?"
+        buttonText="Да"
+        isOpen={isConfirmationPopupOpen}
+        onClose={closeAllPopups} />
     </div>
   );
 }
