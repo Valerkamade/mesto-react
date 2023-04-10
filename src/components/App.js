@@ -2,7 +2,7 @@ import React from "react";
 import Header from "./Header";
 import Main from "./Main";
 import Footer from "./Footer";
-import PopupWhithForm from "./PopupWithForm";
+import PopupWithForm from "./PopupWithForm";
 import ImagePopup from "./ImagePopup";
 
 function App() {
@@ -49,7 +49,7 @@ function App() {
         onEditAvatar={handleEditAvatarClick}
         onCardClick={handleCardClick} />
       <Footer />
-      <PopupWhithForm
+      <PopupWithForm
         name="profile"
         title="Редактировать профиль"
         buttonText="Сохранить"
@@ -78,9 +78,9 @@ function App() {
           <span className="popup__error about-error">
           </span>
         </label>
-      </PopupWhithForm>
+      </PopupWithForm>
 
-      <PopupWhithForm
+      <PopupWithForm
         name="place"
         title="Новое место"
         buttonText="Создать"
@@ -107,9 +107,9 @@ function App() {
           <span className="popup__error link-error">
           </span>
         </label>
-      </PopupWhithForm>
+      </PopupWithForm>
 
-      <PopupWhithForm
+      <PopupWithForm
         name="avatar"
         title="Обновить аватар"
         buttonText="Сохранить"
@@ -124,13 +124,13 @@ function App() {
           <span className="popup__error avatar-error">
           </span>
         </label>
-      </PopupWhithForm>
+      </PopupWithForm>
 
       <ImagePopup
         card={selectedCard}
         onClose={closeAllPopups} />
 
-      <PopupWhithForm
+      <PopupWithForm
         title="Вы уверены?"
         buttonText="Да"
         isOpen={isConfirmationPopupOpen}
