@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function PopupWhithForm({ name, title, children, isOpen, onClose, buttonText }) {
+export default function PopupWithForm({ name, title, children, isOpen, onClose, buttonText }) {
 
   const className = `popup popup_type_${name} ${isOpen ? 'popup_opened' : ''}`;
 

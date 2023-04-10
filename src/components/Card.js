@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Cards({ card, onCardClick }) {
+export default function Card({ card, onCardClick }) {
   // const classNameLike = isLiked(card.likes) ? 'gallery__button-like_active ' : '';
 
   // function isLiked(likes) {
