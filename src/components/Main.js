@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from 'react';
 import { api } from '../utils/api'
 import Card from "./Card";
 
@@ -8,12 +8,12 @@ export default function Main({
   onEditAvatar,
   onCardClick
 }) {
-  const [userName, setUserName] = React.useState('User Name');
-  const [userDescription, setUserDescription] = React.useState('Info');
-  const [userAvatar, setUserAvatar] = React.useState('https://i.postimg.cc/kXGsGqF9/unknow-01.png');
-  const [cards, setCards] = React.useState([]);
+  const [userName, setUserName] = useState('');
+  const [userDescription, setUserDescription] = useState('');
+  const [userAvatar, setUserAvatar] = useState('');
+  const [cards, setCards] = useState([]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     Promise.all([api.getUserInfoApi(), api.getInitialCardsApi()])
       .then(([user, card]) => {
         setUserName(user.name);
