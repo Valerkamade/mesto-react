@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from 'react';
 import Header from "./Header";
 import Main from "./Main";
 import Footer from "./Footer";
@@ -7,12 +7,12 @@ import ImagePopup from "./ImagePopup";
 
 function App() {
 
-  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
-  const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
-  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
-  const [isConfirmationPopupOpen, setIsConfirmationPopupOpen] = React.useState(false);
-  const [isImagePopupOpen, setIsImagePopupOpen] = React.useState(false);
-  const [selectedCard, setSelectedCard] = React.useState({});
+  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
+  const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
+  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
+  const [isConfirmationPopupOpen, setIsConfirmationPopupOpen] = useState(false);
+  const [isImagePopupOpen, setIsImagePopupOpen] = useState(false);
+  const [selectedCard, setSelectedCard] = useState({});
 
   function handleEditAvatarClick() {
     setIsEditAvatarPopupOpen(true);
@@ -32,7 +32,6 @@ function App() {
     setIsAddPlacePopupOpen(false);
     setIsImagePopupOpen(false);
     setIsConfirmationPopupOpen(false);
-    setTimeout(() => setSelectedCard({}), 600) ;
   }
 
   function handleCardClick(card) {
