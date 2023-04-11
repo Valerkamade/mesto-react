@@ -8,18 +8,18 @@ export default function Main({
   onEditAvatar,
   onCardClick
 }) {
-  const [userName, setUserName] = React.useState();
-  const [userDescription, setUserDescription] = React.useState();
-  const [userAvatar, setUserAvatar] = React.useState();
+  const [userName, setUserName] = React.useState('User Name');
+  const [userDescription, setUserDescription] = React.useState('Info');
+  const [userAvatar, setUserAvatar] = React.useState('https://i.postimg.cc/kXGsGqF9/unknow-01.png');
   const [cards, setCards] = React.useState([]);
 
   React.useEffect(() => {
     Promise.all([api.getUserInfoApi(), api.getInitialCardsApi()])
-      .then(([promUser, promCard]) => {
-        setUserName(promUser.name);
-        setUserDescription(promUser.about);
-        setUserAvatar(promUser.avatar);
-        setCards(promCard);
+      .then(([user, card]) => {
+        setUserName(user.name);
+        setUserDescription(user.about);
+        setUserAvatar(user.avatar);
+        setCards(card);
       })
       .catch(err => console.log(err))
   }, [])
@@ -43,7 +43,6 @@ export default function Main({
           <img className="profile__avatar"
             src={userAvatar}
             alt={userName}
-          // style={{ backgroundImage: `url(${userAvatar})` }} 
           />
         </button>
         <button className="profile__button-add button"
@@ -55,8 +54,8 @@ export default function Main({
 
       <section className="gallery page__gallery" aria-label="Галерея">
         <ul className="gallery__list">
-          {cards.map((card, i) => (
-            <Card card={card} onCardClick={onCardClick} key={i} />
+          {cards.map((card) => (
+            <Card card={card} onCardClick={onCardClick} key={card._id} />
           ))}
         </ul>
       </section>
