@@ -28,7 +28,6 @@ export default function Card({ card, onCardClick }) {
       <img className="gallery__photo"
         src={card.link}
         alt={card.name}
-        // style={{ backgroundImage: `url(${card.link})` }}
         onClick={handleClick}
       />
     </li>
