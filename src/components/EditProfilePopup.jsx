@@ -7,6 +7,7 @@ export default function EditProfilePopup({
   isOpen,
   onClose,
   onUpdateUser,
+  isLoading,
   onMouseDown,
 }) {
   const currentUser = useContext(CurrentUserContext);
@@ -36,7 +37,7 @@ export default function EditProfilePopup({
     <PopupWithForm
       name='profile'
       title='Редактировать профиль'
-      buttonText='Сохранить'
+      buttonText={isLoading ? 'Сохранение...' :'Сохранить'}
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit}
