@@ -9,6 +9,7 @@ export default function EditAvatarPopup({
   onClose,
   onUpdateAvatar,
   isLoading,
+  onMouseDown,
 }) {
   const currentUser = useContext(CurrentUserContext);
   const [isValidity, setIsValidity] = useState(true);
@@ -40,6 +41,7 @@ export default function EditAvatarPopup({
       onClose={onClose}
       onSubmit={handleSubmit}
       isValidity={isValidity}
+      onMouseDown={onMouseDown}
     >
       <label className='popup__label'>
         <input

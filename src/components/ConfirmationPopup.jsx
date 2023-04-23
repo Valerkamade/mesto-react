@@ -1,12 +1,15 @@
 import React from 'react';
 import PopupWithForm from './PopupWithForm';
 
+
 export default function ConfirmationPopup({
   isOpen,
   onClose,
   onConfirm,
   isLoading,
+  onMouseDown,
 }) {
+
   function handleSubmit(evt) {
     evt.preventDefault();
 
@@ -20,6 +23,7 @@ export default function ConfirmationPopup({
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit}
+      onMouseDown={onMouseDown}
     />
   );
 }

@@ -10,6 +10,7 @@ export default function PopupWithForm({
   buttonText,
   onSubmit,
   isValidity,
+  onMouseDown,
 }) {
   const className = `popup popup_type_${name} ${isOpen ? 'popup_opened' : ''}`;
   const [isValidForm, setIsValidForm] = useState(false);
@@ -38,7 +39,7 @@ export default function PopupWithForm({
   }, [children, isOpen, isValidity]);
 
   return (
-    <div className={className}>
+    <div className={className} onMouseDown={onMouseDown}>
       <div className='popup__container'>
         <h2 className='popup__heading'>{title}</h2>
         <form

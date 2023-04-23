@@ -8,6 +8,7 @@ export default function EditProfilePopup({
   onClose,
   onUpdateUser,
   isLoading,
+  onMouseDown,
 }) {
   const currentUser = useContext(CurrentUserContext);
 
@@ -40,6 +41,7 @@ export default function EditProfilePopup({
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit}
+      onMouseDown={onMouseDown}
     >
       <label className='popup__label'>
         <input

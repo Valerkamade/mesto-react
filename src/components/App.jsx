@@ -22,6 +22,14 @@ function App() {
   const [cards, setCards] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
+  const handlerEsc = (evt) => {
+    evt.key === 'Escape' && closeAllPopups();
+  };
+
+  const handleOverlayClose = (evt) => {
+    evt.target === evt.currentTarget && closeAllPopups();
+  };
+
   useEffect(() => {
     Promise.all([api.getUserInfoApi(), api.getInitialCardsApi()])
       .then(([user, card]) => {
@@ -29,6 +37,13 @@ function App() {
         setCards(card);
       })
       .catch((err) => console.log(err));
+  }, []);
+
+  useEffect(() => {
+    document.addEventListener('keydown', handlerEsc);
+    return () => {
+      document.removeEventListener('keydown', handlerEsc);
+    };
   }, []);
 
   function handleEditAvatarClick() {
@@ -155,6 +170,7 @@ function App() {
           onClose={closeAllPopups}
           onUpdateUser={handleUpdateUser}
           isLoading={isLoading}
+          onMouseDown={handleOverlayClose}
         />
 
         <EditAvatarPopup
@@ -162,6 +178,7 @@ function App() {
           onClose={closeAllPopups}
           onUpdateAvatar={handleUpdateAvatar}
           isLoading={isLoading}
+          onMouseDown={handleOverlayClose}
         />
 
         <AddPlacePopup
@@ -169,18 +186,21 @@ function App() {
           onClose={closeAllPopups}
           onAddPlace={handleAddPlaceSubmit}
           isLoading={isLoading}
+          onMouseDown={handleOverlayClose}
         />
 
         <ImagePopup
           card={selectedCard}
           isOpen={isImagePopupOpen}
           onClose={closeAllPopups}
+          onMouseDown={handleOverlayClose}
         />
         <ConfirmationPopup
           isOpen={isConfirmationPopupOpen}
           onClose={closeAllPopups}
           onConfirm={handleCardDelete}
           isLoading={isLoading}
+          onMouseDown={handleOverlayClose}
         />
       </div>
     </CurrentUserContext.Provider>

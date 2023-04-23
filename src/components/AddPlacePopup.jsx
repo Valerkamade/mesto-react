@@ -6,6 +6,7 @@ export default function AddPlacePopup({
   onClose,
   onAddPlace,
   isLoading,
+  onMouseDown,
 }) {
   const [values, setValues] = useState({});
 
@@ -28,6 +29,7 @@ export default function AddPlacePopup({
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit}
+      onMouseDown={onMouseDown}
     >
       <label className='popup__label'>
         <input
