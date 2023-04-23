@@ -22,6 +22,7 @@ export default function PopupWithForm({
         return item.localName !== 'button';
       })
       .map((item) => {
+        item.classList.toggle('popup__input_type_error', item.validationMessage);
         return (item.nextSibling.textContent = item.validationMessage);
       });
 
@@ -37,6 +38,7 @@ export default function PopupWithForm({
 
     isOpen && setIsValidForm(validation());
   }, [children, isOpen, isValidity]);
+
 
   return (
     <div className={className} onMouseDown={onMouseDown}>

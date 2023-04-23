@@ -45,7 +45,7 @@ export default function EditAvatarPopup({
     >
       <label className='popup__label'>
         <input
-          className='popup__input popup__input_type_avatar'
+          className={`popup__input popup__input_type_avatar ${!isValidity&& 'popup__input_type_error'}`}
           type='url'
           name='avatar'
           placeholder='Ссылка на аватар'
