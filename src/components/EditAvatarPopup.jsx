@@ -8,6 +8,7 @@ export default function EditAvatarPopup({
   isOpen,
   onClose,
   onUpdateAvatar,
+  isLoading,
   onMouseDown,
 }) {
   const currentUser = useContext(CurrentUserContext);
@@ -35,7 +36,7 @@ export default function EditAvatarPopup({
     <PopupWithForm
       name='avatar'
       title='Обновить аватар'
-      buttonText='Сохранить'
+      buttonText={isLoading ? 'Сохранение...' :'Сохранить'}
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit}

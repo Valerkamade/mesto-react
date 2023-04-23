@@ -20,6 +20,7 @@ function App() {
   const [selectedCard, setSelectedCard] = useState({});
   const [currentUser, setCurrentUser] = useState({});
   const [cards, setCards] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handlerEsc = (evt) => {
     evt.key === 'Escape' && closeAllPopups();
@@ -87,6 +88,7 @@ function App() {
   }
 
   function handleCardDelete() {
+    setIsLoading(true);
     api
       .deleteCardApi(selectedCard._id)
       .then(() => {
@@ -96,49 +98,51 @@ function App() {
         }, 500);
       })
       .catch((err) => console.log(err))
-      .finally(() => {});
+      .finally(() => {
+        setIsLoading(false);
+      });
   }
 
-  // function handleCardDelete() {
-  //   api
-  //     .deleteCardApi(selectedCard._id)
-  //     .then(() => {
-  //       closeAllPopups();
-  //       setTimeout(() => {
-  //         setCards(cards.filter((item) => item._id !== selectedCard._id));
-  //       }, 500);
-  //     })
-  //     .catch((err) => console.log(err));
-  // }
-
   function handleUpdateUser(value) {
+    setIsLoading(true);
     api
       .setUserInfoApi(value)
       .then((res) => {
         setCurrentUser(res);
         closeAllPopups();
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err))
+      .finally(() => {
+        setIsLoading(false);
+      });
   }
 
   function handleUpdateAvatar(value) {
+    setIsLoading(true);
     api
       .setUserAvatarApi(value)
       .then((res) => {
         setCurrentUser(res);
         closeAllPopups();
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err))
+      .finally(() => {
+        setIsLoading(false);
+      });
   }
 
   function handleAddPlaceSubmit(value) {
+    setIsLoading(true);
     api
       .addNewCardApi(value)
       .then((newCard) => {
         setCards([newCard, ...cards]);
         closeAllPopups();
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err))
+      .finally(() => {
+        setIsLoading(false);
+      });
   }
 
   function handle(card) {
@@ -165,6 +169,7 @@ function App() {
           isOpen={isEditProfilePopupOpen}
           onClose={closeAllPopups}
           onUpdateUser={handleUpdateUser}
+          isLoading={isLoading}
           onMouseDown={handleOverlayClose}
         />
 
@@ -172,6 +177,7 @@ function App() {
           isOpen={isEditAvatarPopupOpen}
           onClose={closeAllPopups}
           onUpdateAvatar={handleUpdateAvatar}
+          isLoading={isLoading}
           onMouseDown={handleOverlayClose}
         />
 
@@ -179,6 +185,7 @@ function App() {
           isOpen={isAddPlacePopupOpen}
           onClose={closeAllPopups}
           onAddPlace={handleAddPlaceSubmit}
+          isLoading={isLoading}
           onMouseDown={handleOverlayClose}
         />
 
@@ -192,6 +199,7 @@ function App() {
           isOpen={isConfirmationPopupOpen}
           onClose={closeAllPopups}
           onConfirm={handleCardDelete}
+          isLoading={isLoading}
           onMouseDown={handleOverlayClose}
         />
       </div>
