@@ -3,7 +3,12 @@ import PopupWithForm from './PopupWithForm';
 
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
-export default function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
+export default function EditProfilePopup({
+  isOpen,
+  onClose,
+  onUpdateUser,
+  onMouseDown,
+}) {
   const currentUser = useContext(CurrentUserContext);
 
   const [value, setValue] = useState({});
@@ -35,6 +40,7 @@ export default function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit}
+      onMouseDown={onMouseDown}
     >
       <label className='popup__label'>
         <input
