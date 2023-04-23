@@ -1,21 +1,27 @@
-import React, { useContext, useEffect, useRef } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
+// import React, { useContext, useEffect, useRef, useState } from 'react';
 import PopupWithForm from './PopupWithForm';
 
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
 export default function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar }) {
   const currentUser = useContext(CurrentUserContext);
+  const [isValidity, setIsValidity] = useState(true);
   const inputRef = useRef(0);
 
   useEffect(() => {
-    inputRef.current.value = currentUser.avatar;
-  }, [currentUser]);
+    isOpen && (inputRef.current.value = currentUser.avatar) && setIsValidity(true);
+  }, [currentUser, isOpen]);
 
   function handleSubmit(evt) {
     evt.preventDefault();
     onUpdateAvatar({
       avatar: inputRef.current.value,
     });
+  }
+
+  function handleChange() {
+    setIsValidity(inputRef.current.checkValidity());
   }
 
   return (
@@ -26,6 +32,7 @@ export default function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar }) {
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit}
+      isValidity={isValidity}
     >
       <label className='popup__label'>
         <input
@@ -34,7 +41,9 @@ export default function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar }) {
           name='avatar'
           placeholder='Ссылка на аватар'
           required
+          defaultValue={currentUser.avatar}
           ref={inputRef}
+          onChange={(evt) => handleChange(evt.target.value)}
         />
         <span className='popup__error avatar-error'></span>
       </label>

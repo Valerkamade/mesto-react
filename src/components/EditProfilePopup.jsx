@@ -9,11 +9,12 @@ export default function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
   const [value, setValue] = useState({});
 
   useEffect(() => {
-    setValue({
-      name: currentUser.name,
-      about: currentUser.about,
-    });
-  }, [currentUser]);
+    isOpen &&
+      setValue({
+        name: currentUser.name,
+        about: currentUser.about,
+      });
+  }, [currentUser, isOpen]);
 
   function handleChange(evt) {
     setValue({ ...value, [evt.target.name]: evt.target.value });
@@ -22,6 +23,7 @@ export default function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
   function handleSubmit(evt) {
     evt.preventDefault();
     onUpdateUser(value);
+
     setValue({ [evt.target.name]: '' });
   }
 

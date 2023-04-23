@@ -1,5 +1,5 @@
-import React from 'react';
-// import React, {useState} from 'react';
+// import React from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 
 export default function PopupWithForm({
   name,
@@ -9,9 +9,33 @@ export default function PopupWithForm({
   onClose,
   buttonText,
   onSubmit,
+  isValidity,
 }) {
   const className = `popup popup_type_${name} ${isOpen ? 'popup_opened' : ''}`;
-// const [error, setError] = useState();
+  const [isValidForm, setIsValidForm] = useState(false);
+  const formRef = useRef(0);
+
+  useEffect(() => {
+    Array.from(formRef.current)
+      .filter((item) => {
+        return item.localName !== 'button';
+      })
+      .map((item) => {
+        return (item.nextSibling.textContent = item.validationMessage);
+      });
+
+    function validation() {
+      if (children === undefined) {
+        return true;
+      }
+      if (formRef.current.name.avatar) {
+        isValidity();
+      }
+      return formRef.current.checkValidity();
+    }
+
+    isOpen && setIsValidForm(validation());
+  }, [children, isOpen, isValidity]);
 
   return (
     <div className={className}>
@@ -24,9 +48,14 @@ export default function PopupWithForm({
           autoComplete='off'
           noValidate
           onSubmit={onSubmit}
+          ref={formRef}
         >
           {children}
-          <button className='popup__button-save button' type='submit' >
+          <button
+            className='popup__button-save button'
+            type='submit'
+            disabled={!isValidForm}
+          >
             {buttonText}
           </button>
         </form>
