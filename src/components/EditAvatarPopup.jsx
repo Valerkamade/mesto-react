@@ -4,13 +4,20 @@ import PopupWithForm from './PopupWithForm';
 
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
-export default function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar }) {
+export default function EditAvatarPopup({
+  isOpen,
+  onClose,
+  onUpdateAvatar,
+  isLoading,
+}) {
   const currentUser = useContext(CurrentUserContext);
   const [isValidity, setIsValidity] = useState(true);
   const inputRef = useRef(0);
 
   useEffect(() => {
-    isOpen && (inputRef.current.value = currentUser.avatar) && setIsValidity(true);
+    isOpen &&
+      (inputRef.current.value = currentUser.avatar) &&
+      setIsValidity(true);
   }, [currentUser, isOpen]);
 
   function handleSubmit(evt) {
@@ -28,7 +35,7 @@ export default function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar }) {
     <PopupWithForm
       name='avatar'
       title='Обновить аватар'
-      buttonText='Сохранить'
+      buttonText={isLoading ? 'Сохранение...' :'Сохранить'}
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit}
