@@ -21,9 +21,9 @@ export default function PopupWithForm({
       .filter((item) => {
         return item.localName !== 'button';
       })
-      .map((item) => {
+      .forEach((item) => {
         item.classList.toggle('popup__input_type_error', item.validationMessage);
-        return (item.nextSibling.textContent = item.validationMessage);
+        (item.nextSibling.textContent = item.validationMessage);
       });
 
     function validation() {

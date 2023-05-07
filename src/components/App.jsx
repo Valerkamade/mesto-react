@@ -152,7 +152,7 @@ function App() {
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
-      <div className='page'>
+      <div>
         <Header />
         <Main
           onEditProfile={handleEditProfileClick}

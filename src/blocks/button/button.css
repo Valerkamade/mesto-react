@@ -2,6 +2,11 @@
   cursor: pointer;
   transition: 1s opacity ease-out;
   background-color: transparent;
+  box-shadow: none;
+  border: none;
+  padding: 0;
+  
+  color: var(--color-second);
 }
 
 .button:hover {
