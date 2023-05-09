@@ -1,4 +1,7 @@
 .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   max-width: 880px;
   width: 100%;
 
@@ -7,10 +10,12 @@
   padding: 28px 0 26px 27px;
 
   flex-shrink: 0;
+  font-size: 18px;
+  line-height: 22px;
 }
 
 @media (min-width: 880px) {
   .header {
-    padding: 45px 0 35px 0;
+    padding: 45px 0 39px 0;
   }
 }
